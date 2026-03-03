@@ -1163,43 +1163,49 @@
     </section>
     
     <!-- 取得成绩 -->
-    <section class="achievements bg-pattern" id="achievements" style="position: relative;">
-        <div style="position: absolute; top: 80px; left: 10%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0,87,255,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
-        <div style="position: absolute; bottom: 80px; right: 15%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(0,87,255,0.03) 0%, transparent 70%); border-radius: 50%;"></div>
+    <section class="achievements bg-pattern" id="achievements" style="position: relative; background: linear-gradient(135deg, #fafafa 0%, #f5f5f0 100%);">
+        <div style="position: absolute; top: 80px; left: 10%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 80px; right: 15%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(0,87,255,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
         <div class="section-inner">
-            <div class="section-label fade-in">Achievements</div>
+            <div class="section-label fade-in" style="color: #b8860b;">Achievements</div>
             <h2 class="section-title fade-in">取得成绩</h2>
             
-            <div class="achievements-grid">
-                <div class="achievement-card fade-in">
-                    <img src="works/award.png" alt="广告节奖杯" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div class="achievement-content">
-                        <h3>中国国际广告节公益传播人物大奖</h3>
-                        <p>凭借蔡磊渐冻症人文短片荣获第30届中国国际广告节公益传播人物大奖</p>
+            <div class="achievements-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <!-- 主成就 - 大奖 -->
+                <div class="achievement-card fade-in" style="grid-column: span 2; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 2px solid #d4af37; box-shadow: 0 8px 32px rgba(212,175,55,0.2); display: flex; align-items: center; gap: 24px; padding: 32px; border-radius: 16px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; right: -20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+                    <img src="works/award.png?v=2" alt="广告节奖杯" style="width: 100px; height: 100px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 2px solid rgba(212,175,55,0.3); position: relative; z-index: 1;">
+                    <div class="achievement-content" style="position: relative; z-index: 1;">
+                        <div style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%); color: #1a1a2e; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">🏆 最高荣誉</div>
+                        <h3 style="color: #fff; font-size: 22px; margin-bottom: 8px; font-weight: 600;">中国国际广告节公益传播人物大奖</h3>
+                        <p style="color: rgba(255,255,255,0.7); line-height: 1.6;">凭借蔡磊渐冻症人文短片荣获第30届中国国际广告节公益传播人物大奖</p>
                     </div>
                 </div>
                 
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">⭐</div>
+                <!-- 成就2 -->
+                <div class="achievement-card fade-in" style="background: white; border: 1px solid #e8e8e8; border-left: 4px solid #d4af37; box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 24px; border-radius: 12px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(212,175,55,0.3);">⭐</div>
                     <div class="achievement-content">
-                        <h3>一条年度好片</h3>
-                        <p>2023年、2024年连续两年获得"一条"平台年度好片荣誉</p>
+                        <h3 style="font-size: 17px; margin-bottom: 6px; color: var(--text-primary); font-weight: 600;">一条年度好片</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">2023年、2024年连续两年获得"一条"平台年度好片荣誉</p>
                     </div>
                 </div>
                 
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">🎬</div>
+                <!-- 成就3 -->
+                <div class="achievement-card fade-in" style="background: white; border: 1px solid #e8e8e8; border-left: 4px solid #0057ff; box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 24px; border-radius: 12px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #0057ff 0%, #00d4aa 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,87,255,0.3);">🎬</div>
                     <div class="achievement-content">
-                        <h3>近百位名人短片制作</h3>
-                        <p>在"一条"期间制作近百位明星、艺术家、建筑师、学者短片</p>
+                        <h3 style="font-size: 17px; margin-bottom: 6px; color: var(--text-primary); font-weight: 600;">近百位名人短片制作</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">在"一条"期间制作近百位明星、艺术家、建筑师、学者短片</p>
                     </div>
                 </div>
                 
-                <div class="achievement-card fade-in">
-                    <div class="achievement-icon">📈</div>
+                <!-- 成就4 -->
+                <div class="achievement-card fade-in" style="background: white; border: 1px solid #e8e8e8; border-left: 4px solid #e74c3c; box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 24px; border-radius: 12px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.3s;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(231,76,60,0.3);">📈</div>
                     <div class="achievement-content">
-                        <h3>全网爆款制造</h3>
-                        <p>8条千万播放短片、35条百万播放短片的制作经验</p>
+                        <h3 style="font-size: 17px; margin-bottom: 6px; color: var(--text-primary); font-weight: 600;">全网爆款制造</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">8条千万播放短片、35条百万播放短片的制作经验</p>
                     </div>
                 </div>
             </div>
