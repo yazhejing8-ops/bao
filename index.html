@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,6 +17,7 @@
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f9f9f9;
+            --bg-gradient: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
             --text-primary: #191919;
             --text-secondary: #707070;
             --text-muted: #959595;
@@ -89,11 +91,113 @@
             color: var(--accent);
         }
         
+        /* 装饰背景 */
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0,87,255,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0,87,255,0.02) 0%, transparent 40%);
+        }
+        
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(0,87,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,87,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        
+        .decoration-line {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0.3;
+        }
+        
+        .decoration-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+        
         /* 主视觉 */
         .hero {
             padding: 140px 40px 80px;
-            max-width: var(--content-width);
+            max-width: var(--max-width);
             margin: 0 auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero-portrait {
+            position: relative;
+            width: 280px;
+            height: 380px;
+        }
+        
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .hero-portrait::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0,87,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 50px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0,87,255,0.03) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-portrait {
+                margin: 0 auto;
+                width: 200px;
+                height: 270px;
+            }
         }
         
         .hero-label {
@@ -202,40 +306,44 @@
         }
         
         .aigc-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 32px;
-            border-radius: 8px;
+            border-radius: 16px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .aigc-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 4px 20px rgba(0, 87, 255, 0.08);
+            border-color: rgba(0, 212, 170, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 212, 170, 0.15);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
         }
         
         .aigc-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(0, 87, 255, 0.08);
-            border-radius: 12px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.2) 0%, rgba(0, 87, 255, 0.2) 100%);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
+            border: 1px solid rgba(0, 212, 170, 0.3);
         }
         
         .aigc-card h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 12px;
-            color: var(--text-primary);
+            color: white;
         }
         
         .aigc-card p {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             line-height: 1.7;
             margin-bottom: 20px;
         }
@@ -247,12 +355,13 @@
         }
         
         .tool-tag {
-            background: var(--bg-secondary);
-            padding: 6px 12px;
-            border-radius: 4px;
+            background: rgba(0, 212, 170, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 12px;
-            color: var(--text-secondary);
+            color: #00d4aa;
             font-weight: 500;
+            border: 1px solid rgba(0, 212, 170, 0.3);
         }
         
         /* 作品展示 */
@@ -821,39 +930,66 @@
     </nav>
     
     <!-- 主视觉 -->
-    <section class="hero">
-        <div class="hero-label fade-in">Video Editor & Post Director</div>
-        <h1 class="fade-in">荆亚喆 <span style="font-weight: 400; color: var(--text-secondary);">Jack J</span></h1>
-        <div class="hero-title-sub fade-in">视频剪辑师 / 后期导演</div>
-        <p class="hero-desc fade-in">
-            6年视频制作经验，可独立完成视频内容剪辑与创意制作。对 AIGC 工具有深入实践，
-            参与策划制作多个全网爆款视频，包括 8 条千万播放短片、35 条百万播放短片。
-        </p>
-        <div class="hero-stats fade-in">
-            <div class="stat-item">
-                <span class="stat-number">6</span>
-                <span class="stat-label">年工作经验</span>
+    <section class="hero bg-pattern">
+        <div class="hero-content">
+            <div class="hero-label fade-in">Video Editor & Post Director</div>
+            <h1 class="fade-in">荆亚喆 <span style="font-weight: 400; color: var(--text-secondary);">Jack J</span></h1>
+            <div class="hero-title-sub fade-in">视频剪辑师 / 后期导演</div>
+            <p class="hero-desc fade-in">
+                6年视频制作经验，可独立完成视频内容剪辑与创意制作。对 AIGC 工具有深入实践，
+                参与策划制作多个全网爆款视频，包括 10 条千万播放短片、38 条百万播放短片。
+            </p>
+            <div class="hero-stats fade-in">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">年工作经验</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">千万播放短片</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">38</span>
+                    <span class="stat-label">百万播放短片</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">明星/艺术家短片</span>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">8</span>
-                <span class="stat-label">千万播放短片</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">35</span>
-                <span class="stat-label">百万播放短片</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100+</span>
-                <span class="stat-label">明星/艺术家短片</span>
-            </div>
+        </div>
+        <div class="hero-portrait fade-in">
+            <img src="works/portrait.png" alt="荆亚喆">
         </div>
     </section>
     
     <!-- AIGC 能力 -->
-    <section class="capabilities" id="capabilities">
-        <div class="section-inner">
-            <div class="section-label fade-in">AIGC Capabilities</div>
-            <h2 class="section-title fade-in">AI 工作流能力</h2>
+    <section class="capabilities" id="capabilities" style="padding: 120px 40px; position: relative; overflow: hidden; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);">
+        <!-- 背景装饰 -->
+        <div style="position: absolute; inset: 0; opacity: 0.15;">
+            <img src="works/work7.jpg" style="width: 100%; height: 100%; object-fit: cover; filter: blur(30px) brightness(0.4);">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 80%, rgba(0,87,255,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(100,50,255,0.1) 0%, transparent 40%);"></div>
+        
+        <!-- 浮动AI图标 -->
+        <div style="position: absolute; top: 15%; left: 8%; font-size: 80px; opacity: 0.08; animation: float 6s ease-in-out infinite;">🤖</div>
+        <div style="position: absolute; top: 25%; right: 10%; font-size: 60px; opacity: 0.06; animation: float 8s ease-in-out infinite 1s;">🎨</div>
+        <div style="position: absolute; bottom: 20%; left: 15%; font-size: 70px; opacity: 0.07; animation: float 7s ease-in-out infinite 2s;">⚡</div>
+        <div style="position: absolute; bottom: 30%; right: 8%; font-size: 50px; opacity: 0.05; animation: float 9s ease-in-out infinite 0.5s;">🎬</div>
+        
+        <style>
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(5deg); }
+            }
+        </style>
+        
+        <div class="section-inner" style="position: relative; z-index: 1;">
+            <div class="section-label fade-in" style="color: #00d4aa;">AIGC Capabilities</div>
+            <h2 class="section-title fade-in" style="color: white;">AI 工作流能力</h2>
+            <p class="hero-desc fade-in" style="max-width: 700px; margin-bottom: 60px; color: rgba(255,255,255,0.7);">
+                深度整合 AIGC 工具到创作流程，从概念设计到成片输出，提升效率与创意边界。
+            </p>
             
             <div class="aigc-grid">
                 <div class="aigc-card fade-in">
@@ -908,112 +1044,128 @@
         </div>
         
         <div class="works-grid">
-            <!-- 作品1：AI科普视频 -->
+            <!-- 作品1：鼠疫 -->
             <div class="work-item fade-in" data-category="aigc">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123456">
-                    <img src="works/work3.jpg" alt="AI科普视频《鼠疫">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13610839', '_blank')">
+                    <img src="works/work3.jpg" alt="鼠疫">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
                     <div class="work-category">AIGC 科普视频</div>
-                    <h3 class="work-title">AI 科普视频《鼠疫》</h3>
-                    <p class="work-desc">在盛大集团大圆镜工作室期间制作的科普类 AI 视频，运用 AIGC 技术呈现历史与科学的融合。作品点赞超 1W、转发 1.9W，获得广泛关注。</p>
+                    <h3 class="work-title">AI 视频 | 鼠疫</h3>
+                    <p class="work-desc">在盛大集团期间制作的 AI 科普视频《鼠疫》，运用 AIGC 技术呈现历史与科学的融合，点赞超 1W。</p>
                     <div class="work-meta">
-                        <span>👍 1W+ 点赞</span>
-                        <span>↗️ 1.9W 转发</span>
+                        <span>🎨 AI生成</span>
+                        <span>📹 科普短片</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 作品2：蔡磊渐冻症人文短片 -->
+            <!-- 作品2：爱常玉 -->
             <div class="work-item fade-in" data-category="documentary">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123457">
-                    <img src="works/work2.jpg" alt="AI艺术短片">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13610862', '_blank')">
+                    <img src="works/work2.jpg" alt="爱常玉_马年画马">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
-                    <div class="work-category">人文纪录片</div>
-                    <h3 class="work-title">蔡磊渐冻症人文短片</h3>
-                    <p class="work-desc">为渐冻症公益人士蔡磊制作的人文短片，荣获中国国际广告节公益传播人物大奖。作品情感真挚，传播效果显著。</p>
+                    <div class="work-category">艺术纪录片</div>
+                    <h3 class="work-title">一条 | 爱常玉_马年画马</h3>
+                    <p class="work-desc">为"一条"制作的艺术短片，讲述常玉与马年画马的故事，展现东方艺术之美。</p>
                     <div class="work-meta">
-                        <span>🏆 广告节大奖</span>
-                        <span>📺 千万级播放</span>
+                        <span>🎨 艺术</span>
+                        <span>📹 纪录片</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 作品3：上海博物馆纽约外宣 -->
-            <div class="work-item fade-in" data-category="commercial">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123458">
-                    <img src="works/work4.jpg" alt="人物纪录片">
+            <!-- 作品3：人物纪录片 -->
+            <div class="work-item fade-in" data-category="documentary">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13469289', '_blank')">
+                    <img src="works/work4.jpg" alt="创邻科技">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
-                    <div class="work-category">文化宣传</div>
-                    <h3 class="work-title">上海博物馆纽约外宣</h3>
-                    <p class="work-desc">为上海博物馆制作的纽约外宣视频，展现中国传统文化魅力，助力文化出海传播。</p>
+                    <div class="work-category">人物纪录片</div>
+                    <h3 class="work-title">图数据｜创邻科技 吴菁张晨</h3>
+                    <p class="work-desc">参与策划制作的创邻科技企业宣传片，展现图数据技术与应用场景，全网效果卓著。</p>
                     <div class="work-meta">
-                        <span>🏛️ 上海博物馆</span>
-                        <span>🌐 海外传播</span>
+                        <span>🎬 一条出品</span>
+                        <span>👥 人物故事</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 作品4：嘉兴火车站 MAD 马岩松 -->
-            <div class="work-item fade-in" data-category="commercial">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123459">
-                    <img src="works/work5.jpg" alt="温情短片">
+            <!-- 作品4：温情短片 -->
+            <div class="work-item fade-in" data-category="documentary">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13469282', '_blank')">
+                    <img src="works/work5.jpg" alt="芬芳一生">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
-                    <div class="work-category">建筑纪录片</div>
-                    <h3 class="work-title">嘉兴火车站 MAD 马岩松</h3>
-                    <p class="work-desc">记录著名建筑师马岩松设计的嘉兴火车站项目，展现建筑艺术与城市发展的融合之美。</p>
+                    <div class="work-category">温情短片</div>
+                    <h3 class="work-title">芬芳一生｜吴为</h3>
+                    <p class="work-desc">记录摄影师吴为的家庭故事，用影像讲述跨越时代的亲情与记忆，情感真挚动人。</p>
                     <div class="work-meta">
-                        <span>🏗️ MAD建筑</span>
-                        <span>🎬 建筑纪录片</span>
+                        <span>❤️ 温情故事</span>
+                        <span>🏠 家庭主题</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 作品5：杭州版本馆（王澍） -->
+            <!-- 作品5：国际作家访谈 -->
             <div class="work-item fade-in" data-category="commercial">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123460">
-                    <img src="works/work6.jpg" alt="人物访谈">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13469276', '_blank')">
+                    <img src="works/work6.jpg" alt="布莱恩·约翰逊">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
-                    <div class="work-category">建筑纪录片</div>
-                    <h3 class="work-title">杭州版本馆（王澍）</h3>
-                    <p class="work-desc">拍摄普利兹克奖得主王澍设计的杭州国家版本馆，呈现中国传统建筑美学与当代设计的对话。</p>
+                    <div class="work-category">人物访谈</div>
+                    <h3 class="work-title">科技生活｜布莱恩·约翰逊</h3>
+                    <p class="work-desc">采访科技企业家布莱恩·约翰逊，探讨科技与人类生活的融合，展现前沿科技视野。</p>
                     <div class="work-meta">
-                        <span>🏛️ 国家版本馆</span>
-                        <span>🏆 王澍作品</span>
+                        <span>🌍 国际连线</span>
+                        <span>📚 文化访谈</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 作品6：企业IP视频制作 -->
-            <div class="work-item fade-in" data-category="commercial">
-                <div class="work-image" data-video="https://www.xinpianchang.com/a123461">
-                    <img src="works/work1.jpg" alt="商业项目">
+            <!-- 作品6：艺术家纪录片 -->
+            <div class="work-item fade-in" data-category="documentary">
+                <div class="work-image" onclick="window.open('https://www.xinpianchang.com/a13469271', '_blank')">
+                    <img src="works/work9.jpg" alt="巴斯奎特和安迪沃霍尔">
                     <div class="work-play"></div>
                 </div>
                 <div class="work-info">
-                    <div class="work-category">企业IP</div>
-                    <h3 class="work-title">企业 IP 视频制作</h3>
-                    <p class="work-desc">参与策划"创邻科技""图数据"等企业内容的营销策划与视频制作，全网效果卓著。</p>
+                    <div class="work-category">艺术家纪录片</div>
+                    <h3 class="work-title">艺术｜巴斯奎特和安迪沃霍尔</h3>
+                    <p class="work-desc">艺术纪录片，讲述两位传奇艺术家的故事，呈现 20 世纪艺术史的重要篇章。</p>
                     <div class="work-meta">
-                        <span>💼 创邻科技</span>
-                        <span>📊 图数据</span>
+                        <span>🎨 艺术史</span>
+                        <span>🎬 纪录短片</span>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- 更多作品引导 -->
+        <div class="more-works-cta fade-in" style="text-align: center; padding: 60px 40px; margin-top: 40px; background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%); border-radius: 16px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0,87,255,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
+            <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0,87,255,0.03) 0%, transparent 70%); border-radius: 50%;"></div>
+            
+            <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">探索更多作品</h3>
+            <p style="font-size: 16px; color: var(--text-secondary); max-width: 500px; margin: 0 auto 24px; line-height: 1.7;">
+                以上仅为精选作品，在新片场主页还有 20+ 个作品，涵盖建筑、艺术、人文、科技等多个领域
+            </p>
+            <a href="https://www.xinpianchang.com/u10734461" target="_blank" class="contact-btn" style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.3s;">
+                查看全部作品 🎬
+            </a>
+        </div>
     </section>
     
     <!-- 取得成绩 -->
-    <section class="achievements" id="achievements">
+    <section class="achievements bg-pattern" id="achievements" style="position: relative;">
+        <div style="position: absolute; top: 80px; left: 10%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(0,87,255,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 80px; right: 15%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(0,87,255,0.03) 0%, transparent 70%); border-radius: 50%;"></div>
         <div class="section-inner">
             <div class="section-label fade-in">Achievements</div>
             <h2 class="section-title fade-in">取得成绩</h2>
@@ -1055,15 +1207,51 @@
     </section>
     
     <!-- 技能 -->
-    <section class="skills" id="skills">
+    <section class="skills" id="skills" style="background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="section-inner">
             <div class="section-label fade-in">Skills</div>
             <h2 class="section-title fade-in">技术能力</h2>
             
+            <!-- 工具Logo展示 -->
+            <div class="tools-showcase fade-in" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 40px 0 60px; padding: 30px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">🎬</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">FCP</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">✨</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">AE</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">✂️</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">剪映</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">🎨</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">PS</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: #333;">🎭</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">Maya</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: #333;">🎮</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">UE</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #00d4aa 0%, #00a884 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">🤖</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">AI</span>
+                </div>
+                <div class="tool-logo-item" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 24px; color: white;">🎨</div>
+                    <span style="font-size: 12px; color: var(--text-secondary);">MJ</span>
+                </div>
+            </div>
+            
             <div class="skills-grid">
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">Final Cut Pro</span>
+                        <span class="skill-name">🎬 Final Cut Pro</span>
                         <span class="skill-percent">95%</span>
                     </div>
                     <div class="skill-bar">
@@ -1073,7 +1261,7 @@
                 
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">After Effects</span>
+                        <span class="skill-name">✨ After Effects</span>
                         <span class="skill-percent">90%</span>
                     </div>
                     <div class="skill-bar">
@@ -1083,7 +1271,7 @@
                 
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">剪映</span>
+                        <span class="skill-name">✂️ 剪映</span>
                         <span class="skill-percent">95%</span>
                     </div>
                     <div class="skill-bar">
@@ -1093,7 +1281,7 @@
                 
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">Photoshop</span>
+                        <span class="skill-name">🎨 Photoshop</span>
                         <span class="skill-percent">85%</span>
                     </div>
                     <div class="skill-bar">
@@ -1103,7 +1291,7 @@
                 
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">Maya</span>
+                        <span class="skill-name">🎭 Maya</span>
                         <span class="skill-percent">70%</span>
                     </div>
                     <div class="skill-bar">
@@ -1113,7 +1301,7 @@
                 
                 <div class="skill-item fade-in">
                     <div class="skill-header">
-                        <span class="skill-name">Unreal Engine</span>
+                        <span class="skill-name">🎮 Unreal Engine</span>
                         <span class="skill-percent">65%</span>
                     </div>
                     <div class="skill-bar">
@@ -1198,6 +1386,91 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    
+    <!-- 作品集拼图画廊 -->
+    <section class="portfolio-gallery" style="padding: 100px 40px; background: var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-label fade-in" style="text-align: center;">Portfolio Gallery</div>
+            <h2 class="section-title fade-in" style="text-align: center; margin-bottom: 60px;">作品掠影</h2>
+            
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 200px); gap: 16px; max-width: 1200px; margin: 0 auto;">
+                <!-- 大图 - 杭州国家版本馆 -->
+                <div class="gallery-item gallery-item-large" style="grid-column: span 2; grid-row: span 2; position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13469282', '_blank')">
+                    <img src="works/work12.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 20px;">
+                        <span style="color: white; font-weight: 600;">建筑之美</span>
+                    </div>
+                </div>
+                
+                <!-- 小图1 - 繁花 -->
+                <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13610862', '_blank')">
+                    <img src="works/work14.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: white; font-size: 12px;">《繁花》</span>
+                    </div>
+                </div>
+                
+                <!-- 小图2 - 科技人物 -->
+                <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13469276', '_blank')">
+                    <img src="works/work7.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: white; font-size: 12px;">科技人物</span>
+                    </div>
+                </div>
+                
+                <!-- 小图3 - 城市骑行 -->
+                <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13469289', '_blank')">
+                    <img src="works/work18.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: white; font-size: 12px;">城市故事</span>
+                    </div>
+                </div>
+                
+                <!-- 小图4 - 禅修庭院 -->
+                <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13469271', '_blank')">
+                    <img src="works/work20.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: white; font-size: 12px;">东方禅意</span>
+                    </div>
+                </div>
+                
+                <!-- 横图 - 中国瓷器艺术 -->
+                <div class="gallery-item" style="grid-column: span 2; position: relative; overflow: hidden; border-radius: 12px; cursor: pointer;" onclick="window.open('https://www.xinpianchang.com/a13610839', '_blank')">
+                    <img src="works/work23.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: white; font-weight: 500;">7000年中国艺术</span>
+                    </div>
+                </div>
+                
+                <!-- 更多小图 -->
+                <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 12px; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;" onclick="window.open('https://www.xinpianchang.com/u10734461', '_blank')">
+                    <div style="text-align: center; color: white;">
+                        <div style="font-size: 32px; margin-bottom: 8px;">+20</div>
+                        <div style="font-size: 14px; font-weight: 500;">更多作品</div>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .gallery-item:hover img {
+                    transform: scale(1.05);
+                }
+                .gallery-item:hover div[style*="opacity: 0"] {
+                    opacity: 1 !important;
+                }
+                @media (max-width: 968px) {
+                    .gallery-grid {
+                        grid-template-columns: repeat(2, 1fr) !important;
+                        grid-template-rows: repeat(4, 150px) !important;
+                    }
+                    .gallery-item-large {
+                        grid-column: span 2 !important;
+                        grid-row: span 1 !important;
+                    }
+                }
+            </style>
         </div>
     </section>
     
@@ -1291,7 +1564,9 @@
             });
         });
         
-        // 视频播放
+        // 视频播放 - 已改为直接跳转新片场主页
+        // 如需在新窗口播放，可恢复以下代码
+        /*
         const modal = document.getElementById('videoModal');
         const videoPlayer = document.getElementById('videoPlayer');
         
@@ -1303,24 +1578,15 @@
                 document.body.style.overflow = 'hidden';
             });
         });
+        */
         
         function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
             modal.classList.remove('active');
             videoPlayer.src = '';
             document.body.style.overflow = '';
         }
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
         
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
