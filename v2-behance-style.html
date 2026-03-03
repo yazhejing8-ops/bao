@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>剪辑师作品集 | AIGC视觉创作者</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --text-primary: #191919;
+            --text-secondary: #707070;
+            --text-muted: #959595;
+            --accent: #0057ff;
+            --border: #e8e8e8;
+            --max-width: 1200px;
+            --content-width: 800px;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* 导航 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* 主视觉 - 直接开始 */
+        .hero {
+            padding: 140px 40px 80px;
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        
+        .hero-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+        }
+        
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        /* AIGC 能力 - 突出展示 */
+        .capabilities {
+            padding: 80px 40px;
+            background: var(--bg-secondary);
+        }
+        
+        .section-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 48px;
+            color: var(--text-primary);
+        }
+        
+        .aigc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .aigc-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .aigc-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(0, 87, 255, 0.08);
+        }
+        
+        .aigc-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 87, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .aigc-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .aigc-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .aigc-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tool-tag {
+            background: var(--bg-secondary);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* 作品展示 - 大图主导 */
+        .works {
+            padding: 100px 40px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        
+        .works-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+        
+        .works-filter {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--text-primary);
+            border-color: var(--text-primary);
+            color: white;
+        }
+        
+        .works-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+        
+        .work-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .work-item:nth-child(even) {
+            direction: rtl;
+        }
+        
+        .work-item:nth-child(even) > * {
+            direction: ltr;
+        }
+        
+        .work-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            background: var(--bg-secondary);
+            cursor: pointer;
+        }
+        
+        .work-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .work-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .work-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 87, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .work-image:hover .work-play {
+            opacity: 1;
+        }
+        
+        .work-play::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+        
+        .work-info {
+            padding: 20px 0;
+        }
+        
+        .work-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+        
+        .work-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        
+        .work-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .work-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .work-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* 技能 */
+        .skills {
+            padding: 100px 40px;
+            background: var(--bg-secondary);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 80px;
+            margin-top: 48px;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .skill-percent {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .skill-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        /* 联系 */
+        .contact {
+            padding: 120px 40px;
+            text-align: center;
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+        
+        .contact-title {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .contact-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 87, 255, 0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 48px;
+        }
+        
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+        
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(0, 87, 255, 0.05);
+        }
+        
+        /* 页脚 */
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        /* 视频模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        
+        .modal-close:hover {
+            opacity: 1;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* 动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 968px) {
+            .nav-inner {
+                padding: 16px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 20px 60px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .capabilities,
+            .skills {
+                padding: 60px 20px;
+            }
+            
+            .aigc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .works {
+                padding: 60px 20px;
+            }
+            
+            .works-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .work-item,
+            .work-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                gap: 24px;
+            }
+            
+            .work-item:nth-child(even) > * {
+                direction: ltr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .contact {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">Portfolio<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#capabilities">能力</a></li>
+                <li><a href="#works">作品</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主视觉 - 直接开始 -->
+    <section class="hero">
+        <div class="hero-label fade-in">AIGC Creative Studio</div>
+        <h1 class="fade-in">视觉剪辑师 × AIGC创作者</h1>
+        <p class="hero-desc fade-in">
+            专注于 AIGC 辅助内容创作，将人工智能与视觉剪辑相结合，
+            打造具有独特视觉风格的短视频、宣传片及商业广告。
+        </p>
+        <div class="hero-stats fade-in">
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">年剪辑经验</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">商业项目</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">AIGC作品</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AIGC 能力 - 突出展示 -->
+    <section class="capabilities" id="capabilities">
+        <div class="section-inner">
+            <div class="section-label fade-in">Capabilities</div>
+            <h2 class="section-title fade-in">AIGC 核心能力</h2>
+            
+            <div class="aigc-grid">
+                <div class="aigc-card fade-in">
+                    <div class="aigc-icon">🎬</div>
+                    <h3>AI 视频生成</h3>
+                    <p>运用 Runway、Pika、Stable Video 等工具，实现文本/图像到视频的转换，创造独特的视觉叙事。</p>
+                    <div class="aigc-tools">
+                        <span class="tool-tag">Runway Gen-2</span>
+                        <span class="tool-tag">Pika Labs</span>
+                        <span class="tool-tag">Stable Video</span>
+                    </div>
+                </div>
+                
+                <div class="aigc-card fade-in">
+                    <div class="aigc-icon">🎨</div>
+                    <h3>AI 视觉设计</h3>
+                    <p>结合 Midjourney、Stable Diffusion 进行概念设计和视觉风格探索，为视频项目提供高质量的视觉素材。</p>
+                    <div class="aigc-tools">
+                        <span class="tool-tag">Midjourney</span>
+                        <span class="tool-tag">Stable Diffusion</span>
+                        <span class="tool-tag">ComfyUI</span>
+                    </div>
+                </div>
+                
+                <div class="aigc-card fade-in">
+                    <div class="aigc-icon">⚡</div>
+                    <h3>智能后期工作流</h3>
+                    <p>构建 AI 辅助的后期制作流程，包括自动剪辑、智能调色、AI配音、字幕生成，提升制作效率。</p>
+                    <div class="aigc-tools">
+                        <span class="tool-tag">Premiere Pro</span>
+                        <span class="tool-tag">After Effects</span>
+                        <span class="tool-tag">DaVinci</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 作品展示 - 大图主导 -->
+    <section class="works" id="works">
+        <div class="works-header">
+            <div>
+                <div class="section-label fade-in">Selected Works</div>
+                <h2 class="section-title fade-in" style="margin-bottom: 0;">精选作品</h2>
+            </div>
+            <div class="works-filter fade-in">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="aigc">AIGC</button>
+                <button class="filter-btn" data-filter="commercial">商业</button>
+                <button class="filter-btn" data-filter="short">短视频</button>
+            </div>
+        </div>
+        
+        <div class="works-grid">
+            <!-- 作品1：AIGC -->
+            <div class="work-item fade-in" data-category="aigc">
+                <div class="work-image" data-video="https://www.xinpianchang.com/a123456">
+                    <img src="https://images.unsplash.com/photo-1626544827763-d516dce335e2?w=1200&q=80" alt="AIGC作品">
+                    <div class="work-play"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-category">AIGC 创作</div>
+                    <h3 class="work-title">赛博朋克城市概念片</h3>
+                    <p class="work-desc">运用 Runway Gen-2 和 Stable Diffusion 打造的未来城市概念短片，融合 AI 生成素材与传统后期技术，呈现独特的赛博朋克视觉美学。</p>
+                    <div class="work-meta">
+                        <span>⏱ 1:30</span>
+                        <span>👁 12.5K 播放</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品2：AIGC -->
+            <div class="work-item fade-in" data-category="aigc">
+                <div class="work-image" data-video="https://www.xinpianchang.com/a123457">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=80" alt="AIGC作品">
+                    <div class="work-play"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-category">AIGC 创作</div>
+                    <h3 class="work-title">抽象艺术视觉实验</h3>
+                    <p class="work-desc">探索 AI 生成艺术的可能性，通过 Midjourney 生成概念图，结合 After Effects 动态处理，创造出流动的抽象视觉体验。</p>
+                    <div class="work-meta">
+                        <span>⏱ 2:15</span>
+                        <span>👁 8.3K 播放</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品3：商业广告 -->
+            <div class="work-item fade-in" data-category="commercial">
+                <div class="work-image" data-video="https://www.xinpianchang.com/a123458">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&q=80" alt="商业广告">
+                    <div class="work-play"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-category">商业广告</div>
+                    <h3 class="work-title">品牌宣传片制作</h3>
+                    <p class="work-desc">为知名品牌打造的完整宣传片，从前期策划到后期制作全程参与，运用 AIGC 技术辅助概念设计和视觉包装。</p>
+                    <div class="work-meta">
+                        <span>⏱ 3:00</span>
+                        <span>👁 25.6K 播放</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 作品4：短视频 -->
+            <div class="work-item fade-in" data-category="short">
+                <div class="work-image" data-video="https://www.xinpianchang.com/a123459">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&q=80" alt="短视频">
+                    <div class="work-play"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-category">短视频</div>
+                    <h3 class="work-title">创意短视频剪辑</h3>
+                    <p class="work-desc">社交媒体爆款短视频，结合快速剪辑节奏与 AI 特效，在短时间内传达强烈的视觉冲击力。</p>
+                    <div class="work-meta">
+                        <span>⏱ 0:45</span>
+                        <span>👁 156K 播放</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 技能 -->
+    <section class="skills" id="skills">
+        <div class="section-inner">
+            <div class="section-label fade-in">Skills</div>
+            <h2 class="section-title fade-in">技术能力</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Premiere Pro / 剪辑</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">After Effects / 动效</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">DaVinci Resolve / 调色</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">AIGC 工具链</span>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Midjourney / Stable Diffusion</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item fade-in">
+                    <div class="skill-header">
+                        <span class="skill-name">Runway / Pika / AI视频</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系 -->
+    <section class="contact" id="contact">
+        <h2 class="contact-title fade-in">有项目想要合作？</h2>
+        <p class="contact-desc fade-in">无论是商业合作还是创意交流，欢迎随时与我联系</p>
+        <a href="mailto:your-email@example.com" class="contact-btn fade-in">
+            发送邮件 ✉
+        </a>
+        
+        <div class="social-links fade-in">
+            <a href="https://www.xinpianchang.com/u10734461" class="social-link" title="新片场">🎬</a>
+            <a href="#" class="social-link" title="微信">💬</a>
+            <a href="#" class="social-link" title="小红书">📕</a>
+            <a href="#" class="social-link" title="抖音">🎵</a>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2024 剪辑师作品集 | 使用 AIGC 技术辅助创作</p>
+    </footer>
+    
+    <!-- 视频模态框 -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <iframe class="video-player" id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // 作品筛选
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workItems = document.querySelectorAll('.work-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                workItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'grid';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+        
+        // 视频播放
+        const modal = document.getElementById('videoModal');
+        const videoPlayer = document.getElementById('videoPlayer');
+        
+        document.querySelectorAll('.work-image').forEach(img => {
+            img.addEventListener('click', () => {
+                const videoUrl = img.dataset.video;
+                videoPlayer.src = videoUrl;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            videoPlayer.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
